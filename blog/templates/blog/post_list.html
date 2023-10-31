@@ -1,25 +1,32 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Blogger-Dessy</title>
-    </head>
-    <body>
-        <header>
-            <h1><a href="/">Blogger Dessy</a></h1>
-        </header>
+  <head>
+    <title>Blogger Dessy</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}" />
+  </head>
+  <body>
+    <header class="page-header">
+      <div class="container">
+        <h1><a href="/">Blogger Dessy</a></h1>
+      </div>
+    </header>
 
-        <article>
-            <time>published: 26.10.2023, 3:05am</time>
-            <h2><a href="">Cybersecrity</a></h2>
-            <p>The role of security is important and calls for a check in todays digital world </p>
-        </article>
-
-        <article>
-            <time>published: 26.10.2023, 3:05am</time>
-            <h2><a href="">App Development</a></h2>
-            <p>The use of frameworks is prevalent in todays world as well. As such
-                in other to keep up, one needs to learn how to effeciently use these tools
-            </p>
-        </article>
-    </body>
+    <main class="container">
+      <div class="row">
+        <div class="col">
+          {% for post in posts %}
+          <article class="post">
+            <time class="date"> {{ post.published_date }} </time>
+            <h2><a href="">{{ post.title }}</a></h2>
+            <p>{{ post.text|linebreaksbr }}</p>
+          </article>
+          {% endfor %}
+        </div>
+      </div>
+    </main>
+  </body>
 </html>
